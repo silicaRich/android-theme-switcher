@@ -2,17 +2,55 @@ package com.codepath.android.themeswitcher.app;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Spinner;
+
+import java.util.logging.Logger;
 
 
 public class ThemeActivity extends ActionBarActivity {
 
+    public static int currentPosition;
+    Spinner spThemes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_theme);
+        spThemes = (Spinner) findViewById(R.id.spThemes);
+        setupSpinnerItemSelection();
+
     }
+
+    private void setupSpinnerItemSelection() {
+        spThemes = (Spinner) findViewById(R.id.spThemes);
+        spThemes.setSelection(currentPosition);
+        currentPosition = spThemes.getSelectedItemPosition();
+
+        spThemes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                if (currentPosition != position) {
+                    Utils.changeToTheme(ThemeActivity.this, position);
+                }
+                currentPosition = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
 
 
     @Override

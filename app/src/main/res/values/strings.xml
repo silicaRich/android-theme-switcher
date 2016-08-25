@@ -16,7 +16,9 @@
 
     <string-array name="theme_array">
         <item>Material-Light</item>
-        <item>YOUR-CUSTOM-THEME-NAME</item>
+        <item>Nicole-Theme-1</item>
+        <item>Nicole-Theme-2</item>
+        <item>Nicole-Theme-3</item>
     </string-array>
 
 </resources>
